@@ -1,13 +1,14 @@
 import logo from './logo.svg';
 import './App.css';
 import React from "react";
-
+import Api from './utils/API.js';
+import Searchbar from './components/Searchbar'
 
 
 function App() {
   return (
-    <div className="App">
-
+    <div className="container">
+      <Searchbar />
     </div>
   );
 }
