@@ -4,32 +4,39 @@ import React, { useState, useEffect } from "react";
 const Searchbar = () => {
 
     const [ searchValue, setSearchValue ] = useState('');
-    const [ users, setUsers ] = useState([])
+    const [ employee, setEmployee ] = useState([])
     
     useEffect(()=>{
         fetch('https://randomuser.me/api/?results=50') 
         .then(response => response.json())
         .then(data => {
-            const users = data.results;
-            setUsers(users)
+            const employee = data.results;
+            setEmployee(employee)
         })
     },[])
-
-    const usersMap = users.map((el, index)=> {
+// ----------__________________________-------------------___________________
+    const employeeMap = employee.map((el, index)=> {
         
-        const { picture, name  } = el
-        const { title, first ,last } = name;
+        const { picture, name, email, location, phone} = el
+        const { first ,last } = name;
+        const { city, state } = location;
         const { thumbnail, large, medium} = picture
         
         return (
             
             <article style={{display: 'flex'}} key={index}>
                 <img src={thumbnail} />
-                <h3>{`${title}. ${first} ${last}`}</h3>
+                <h3>{`${first} ${last}`}</h3>
+                <div>                
+                <p> {`${email}`}</p>
+                <p> {`${city}, ${state}`}</p>
+                <p> {`Contact:${phone}`} </p>
+                </div>
+
             </article>
         )
     })
-
+// ----------__________________________-------------------___________________
     return (
         <div>
             <input value={searchValue}
@@ -38,17 +45,17 @@ const Searchbar = () => {
                 name="searchbar"
                 placeholder="Find Employee">
             </input>
-            <button onClick={()=>console.log('BUTTON cLICKED', searchValue)} type="search">Search</button>
+            <button onClick={()=>console.log('BUTTON Connected', searchValue)} type="search">Search</button>
 
             <section>
-                {usersMap}
+                {employeeMap}
             </section>
 
             
         </div>
     )
 }
-
+// ----------__________________________-------------------___________________
 export default Searchbar;
 
     // {
