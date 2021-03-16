@@ -4,13 +4,12 @@ import React from "react";
 import Api from './utils/API.js';
 import Searchbar from './components/Searchbar'
 
-
-function App() {
-  return (
-    <div className="container">
-      <Searchbar />
-    </div>
-  );
+const App =()=> {
+    return (
+      <div className="container">
+        <Searchbar />
+      </div>
+    );
 }
 
 export default App;
