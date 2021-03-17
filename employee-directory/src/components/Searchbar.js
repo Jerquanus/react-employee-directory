@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-// functional
+
 const Searchbar = () => {
 
     const [ searchValue, setSearchValue ] = useState('');
@@ -14,7 +14,9 @@ const Searchbar = () => {
             setEmployee(employee)
         })
     },[])
-// ----------__________________________-------------------___________________
+
+    // -----------------------------
+
     const employeeMap = employee.map((el, index)=> {
         
         const { picture, name, email, location, phone} = el
@@ -32,11 +34,10 @@ const Searchbar = () => {
                 <p> {`${city}, ${state}`}</p>
                 <p> {`Contact:${phone}`} </p>
                 </div>
-
             </article>
         )
     })
-// ----------__________________________-------------------___________________
+    // -----------------------------
     return (
         <div>
             <input value={searchValue}
@@ -50,12 +51,10 @@ const Searchbar = () => {
             <section>
                 {employeeMap}
             </section>
-
-            
         </div>
     )
 }
-// ----------__________________________-------------------___________________
+
 export default Searchbar;
 
     // {
