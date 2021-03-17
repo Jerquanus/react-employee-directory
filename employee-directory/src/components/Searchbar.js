@@ -4,7 +4,19 @@ import React, { useState, useEffect } from "react";
 const Searchbar = () => {
 
     const [ searchValue, setSearchValue ] = useState('');
-    const [ employee, setEmployee ] = useState([])
+    const [ employee, setEmployee ] = useState([]);
+
+
+
+    // 1. A onChange handler on the search bar fires off a function that runs this this filterByValue
+    // 2. We need two arrays in state. One that holds ALL employee data and one that only holds Filtered employee data.
+    // 3. At first our Filtered data should be = to all our data
+    // 4. Use react to render a component only showing the Filtered data
+    
+    // const arrayOfObject = [{ name: 'Paul', country: 'Canada', }, { name: 'Lea', country: 'Italy', }, { name: 'John', country: 'Italy' }];
+    // console.log(filterByValue(arrayOfObject, 'lea')); // [{name: 'Lea', country: 'Italy'}]
+    // console.log(filterByValue(arrayOfObject, 'ita')); // [{name: 'Lea', country: 'Italy'}, {name: 'John', country: 'Italy'}]
+    
     
     useEffect(()=>{
         fetch('https://randomuser.me/api/?results=50') 
@@ -15,6 +27,11 @@ const Searchbar = () => {
         })
     },[])
 
+    // function filterByValue(array, string) {
+    //     return array.filter(o =>
+    //         Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
+    // }
+
     // -----------------------------
 
     const employeeMap = employee.map((el, index)=> {
@@ -22,7 +39,7 @@ const Searchbar = () => {
         const { picture, name, email, location, phone} = el
         const { first ,last } = name;
         const { city, state } = location;
-        const { thumbnail, large, medium} = picture
+        const { thumbnail } = picture
         
         return (
             
@@ -37,6 +54,8 @@ const Searchbar = () => {
             </article>
         )
     })
+
+
     // -----------------------------
     return (
         <div>
