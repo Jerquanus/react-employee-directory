@@ -5,6 +5,7 @@ const Searchbar = () => {
 
     const [ searchValue, setSearchValue ] = useState('');
     const [ employee, setEmployee ] = useState([]);
+    const [ filteredEmployee, setFilteredEmployee ] = useState([]);
 
 
 
@@ -23,14 +24,22 @@ const Searchbar = () => {
         .then(response => response.json())
         .then(data => {
             const employee = data.results;
+            const filteredEmployee = data.results;
             setEmployee(employee)
+            setFilteredEmployee(filteredEmployee)
         })
     },[])
+    
+    useEffect (()=>{
+    function filterByValue(employee, searchValue) {
+        employee.filter(o =>
+        Object.keys(o).some(k => o[k].toLowerCase().includes(searchValue.toLowerCase())));
+        
+    }
+    },[filteredEmployee])
 
-    // function filterByValue(array, string) {
-    //     return array.filter(o =>
-    //         Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
-    // }
+
+
 
     // -----------------------------
 
@@ -63,6 +72,7 @@ const Searchbar = () => {
                 type="text" 
                 onChange={(evt)=> setSearchValue(evt.target.value)}
                 name="searchbar"
+                // value= {filteredEmployee}
                 placeholder="Find Employee">
             </input>
             <button onClick={()=>console.log('BUTTON Connected', searchValue)} type="search">Search</button>
