@@ -32,12 +32,12 @@ const Searchbar = () => {
     
     useEffect (()=>{
 
-        const newEmployeeList =  employee.filter(o => Object.keys(o).some(k => o[k].toLowerCase().includes(searchValue.toLowerCase())));
+        // var newEmployeeList =  employee.filter(o => Object.keys(o).some(k => o[k].toLowerCase().includes(searchValue.toLowerCase())));
+        var newEmployeeList = employee.filter(res => res.name.toLowerCase().includes(searchValue.toLowerCase()));
+        setFilteredEmployee(newEmployeeList)
+        // setFilteredEmployee(newEmployeeList)
 
-        filteredEmployee = newEmployeeList
-
-
-    },[searchValue])
+    },[searchValue, employee])
 
     // -----------------------------
 
