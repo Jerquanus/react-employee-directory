@@ -31,19 +31,17 @@ const Searchbar = () => {
     },[])
     
     useEffect (()=>{
-    function filterByValue(employee, searchValue) {
-        employee.filter(o =>
-        Object.keys(o).some(k => o[k].toLowerCase().includes(searchValue.toLowerCase())));
-        
-    }
-    },[filteredEmployee])
+
+        const newEmployeeList =  employee.filter(o => Object.keys(o).some(k => o[k].toLowerCase().includes(searchValue.toLowerCase())));
+
+        filteredEmployee = newEmployeeList
 
 
-
+    },[searchValue])
 
     // -----------------------------
 
-    const employeeMap = employee.map((el, index)=> {
+    const employeeMap = filteredEmployee.map((el, index)=> {
         
         const { picture, name, email, location, phone} = el
         const { first ,last } = name;
@@ -64,8 +62,8 @@ const Searchbar = () => {
         )
     })
 
-
     // -----------------------------
+
     return (
         <div>
             <input value={searchValue}
