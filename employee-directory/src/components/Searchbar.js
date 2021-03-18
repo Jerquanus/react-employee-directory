@@ -9,15 +9,7 @@ const Searchbar = () => {
 
 
 
-    // 1. A onChange handler on the search bar fires off a function that runs this this filterByValue
-    // 2. We need two arrays in state. One that holds ALL employee data and one that only holds Filtered employee data.
-    // 3. At first our Filtered data should be = to all our data
-    // 4. Use react to render a component only showing the Filtered data
-    
-    // const arrayOfObject = [{ name: 'Paul', country: 'Canada', }, { name: 'Lea', country: 'Italy', }, { name: 'John', country: 'Italy' }];
-    // console.log(filterByValue(arrayOfObject, 'lea')); // [{name: 'Lea', country: 'Italy'}]
-    // console.log(filterByValue(arrayOfObject, 'ita')); // [{name: 'Lea', country: 'Italy'}, {name: 'John', country: 'Italy'}]
-    
+
     
     useEffect(()=>{
         fetch('https://randomuser.me/api/?results=50') 
@@ -31,9 +23,9 @@ const Searchbar = () => {
     },[])
     
     useEffect (()=>{
-
         // var newEmployeeList =  employee.filter(o => Object.keys(o).some(k => o[k].toLowerCase().includes(searchValue.toLowerCase())));
-        var newEmployeeList = employee.filter(res => res.name.toLowerCase().includes(searchValue.toLowerCase()));
+       console.log(employee)
+        var newEmployeeList = employee.filter(res => res.name.first.toLowerCase().includes(searchValue.toLowerCase()));
         setFilteredEmployee(newEmployeeList)
         // setFilteredEmployee(newEmployeeList)
 
