@@ -7,10 +7,6 @@ const Searchbar = () => {
     const [ employee, setEmployee ] = useState([]);
     const [ filteredEmployee, setFilteredEmployee ] = useState([]);
 
-
-
-
-    
     useEffect(()=>{
         fetch('https://randomuser.me/api/?results=50') 
         .then(response => response.json())
@@ -42,15 +38,16 @@ const Searchbar = () => {
         
         return (
             
-            <article style={{display: 'flex'}} key={index}>
-                <img src={thumbnail} />
-                <h3>{`${first} ${last}`}</h3>
-                <div>                
-                <p> {`${email}`}</p>
-                <p> {`${city}, ${state}`}</p>
-                <p> {`Contact:${phone}`} </p>
-                </div>
-            </article>
+            <tr key={index}>
+                <td>
+                    <img src={thumbnail} alt="Profile Pic" />
+                </td>
+                <td>{`${first} ${last}`}</td>
+                <td> {`${email}`}</td>
+                <td> {`${city}, ${state}`}</td>
+                <td> {`Contact:${phone}`} </td>
+                
+            </tr>
         )
     })
 
